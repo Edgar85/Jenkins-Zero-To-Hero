@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: spring-boot-app-service
 spec:
-  ports:
-    - protocol: "TCP"
-      port: 8080        # The port inside the cluster
-      targetPort: 8080  # The port exposed by the service
-  type: NodePort        # Type of service
+  type: NodePort
   selector:
     app: spring-boot-app
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    nodePort: 30005
