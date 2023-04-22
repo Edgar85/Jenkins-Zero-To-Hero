@@ -113,3 +113,17 @@ You have now successfully deployed an application using Argo CD.
 Argo CD is a Kubernetes controller, responsible for continuously monitoring all running applications and comparing their live state to the desired state specified in the Git repository.
 
 ![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/Screenshot%20from%202023-04-21%2017-00-21.png)
+
+To check if our service is working, execute the command:
+```
+kubectl get svc
+```
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/kubectl-get-svc.png)
+
+Now we need to get the node IP with 
+```
+kubectl get nodes -o wide 
+```
+so that we can access our app.
+
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/kubectl-get-wide.png)
