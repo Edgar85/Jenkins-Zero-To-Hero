@@ -127,3 +127,7 @@ kubectl get nodes -o wide
 so that we can access our app.
 
 ![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/kubectl-get-wide.png)
+
+Final result.
+
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/Screenshot%20from%202023-04-21%2017-00-54.png)
