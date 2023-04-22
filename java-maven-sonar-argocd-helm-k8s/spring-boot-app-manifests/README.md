@@ -23,3 +23,4 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin
 kubectl version
 ```
+![Screenshot](https://github.com/Edgar85/Jenkins-Zero-To-Hero/minikube_1.avif)
