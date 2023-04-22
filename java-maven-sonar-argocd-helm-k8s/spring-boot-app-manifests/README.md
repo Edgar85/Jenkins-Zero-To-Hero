@@ -16,11 +16,51 @@ sudo usermod -aG docker $USER && newgrp docker
 sudo reboot docker
 minikube start --driver=docker
 ```
-# llowing steps to install kubectl.
+# Install kubectl
+
+Kubectl is a command-line interface (CLI) tool that is used to interact with Kubernetes clusters. It allows users to deploy, inspect, and manage Kubernetes resources such as pods, deployments, services, and more. Kubectl enables users to perform operations such as creating, updating, deleting, and scaling Kubernetes resources.
+
+Run the following steps to install kubectl.
 ```
 curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin
 kubectl version
 ```
-![Screenshot](https://github.com/Edgar85/Jenkins-Zero-To-Hero/minikube_1.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/minikube_1.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/minikube_2.avif)
+
+# Install Argo CD operator
+ArgoCD is a widely-used GitOps continuous delivery tool that automates application deployment and management on Kubernetes clusters, leveraging Git repositories as the source of truth. It offers a web-based UI and a CLI for managing deployments, and it integrates with other tools. ArgoCD streamlines the deployment process on Kubernetes clusters and is a popular tool in the Kubernetes ecosystem.
+
+The Argo CD Operator manages the full lifecycle of Argo CD and its components. The operator's goal is to automate the tasks required when operating an Argo CD cluster.
+```
+curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.24.0/install.sh | bash -s v0.24.0
+kubectl create -f https://operatorhub.io/install/argocd-operator.yaml
+kubectl get csv -n operators
+kubectl get pods -n operators
+```
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/minikube_3.avif)
+
+Goto link https://argocd-operator.readthedocs.io/en/latest/usage/basics/
+
+The following example shows the most minimal valid manifest to create a new Argo CD cluster with the default configuration.
+
+Create argocd-basic.yml with the following content.
+```
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: example-argocd
+  labels:
+    example: basic
+spec: {}
+```
+```
+kubectl apply -f argocd-basic.yml
+kubectl get pods
+kubectl get svc
+kubectl edit svc example-argocd-server
+minikube service example-argocd-server
+kubectl get secret
+```
