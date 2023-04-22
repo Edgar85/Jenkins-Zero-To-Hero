@@ -27,8 +27,8 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin
 kubectl version
 ```
-![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/minikube_1.avif)
-![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/minikube_2.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/minikube_1.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/minikube_2.avif)
 
 # Install Argo CD operator
 ArgoCD is a widely-used GitOps continuous delivery tool that automates application deployment and management on Kubernetes clusters, leveraging Git repositories as the source of truth. It offers a web-based UI and a CLI for managing deployments, and it integrates with other tools. ArgoCD streamlines the deployment process on Kubernetes clusters and is a popular tool in the Kubernetes ecosystem.
@@ -40,7 +40,7 @@ kubectl create -f https://operatorhub.io/install/argocd-operator.yaml
 kubectl get csv -n operators
 kubectl get pods -n operators
 ```
-![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/minikube_3.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/minikube_3.avif)
 
 Goto link https://argocd-operator.readthedocs.io/en/latest/usage/basics/
 
@@ -64,3 +64,52 @@ kubectl edit svc example-argocd-server
 minikube service example-argocd-server
 kubectl get secret
 ```
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/minikube_4.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/minikube_5.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/minikube_6.avif)
+NodePort services are useful for exposing pods to external traffic where clients have network access to the Kubernetes nodes.
+
+```kubectl edit svc example-argocd-server``` And change from ClusterIP to NodePort. Save it.
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/argocd_1.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/minikube_7.avif)
+
+# Password for Argo CD
+
+Find out password for Argo CD, so that, we can access Argo CD web interface.
+```
+kubectl get secret
+kubectl edit secret example-argocd-cluster
+```
+Copy admin.password
+
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/minikube_8.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/argocd_2.avif)
+```
+echo <admin.password> | base64 -d
+```
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/argocd_3.avif)
+
+# Argo CD Configuration
+
+Username : admin
+
+Password : 2zjrcTKFRvEgBZW1ftUO4GuodQD5A9CH
+
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/argocd_4.avif)
+
+We will use the Argo CD web interface to run sprint-boot-app.
+
+Setup Github Repository manifest and Kubernetes cluster.
+
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/argocd_5.avif)
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/argocd_6.avif)
+
+After Create. You can check if pods are running for sprint-boot-app
+
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/minikube_9.avif)
+
+You have now successfully deployed an application using Argo CD.
+
+Argo CD is a Kubernetes controller, responsible for continuously monitoring all running applications and comparing their live state to the desired state specified in the Git repository.
+
+![Minikube](https://github.com/Edgar85/Jenkins-Zero-To-Hero/blob/main/Screenshots/Screenshot%20from%202023-04-21%2017-00-21.png)
