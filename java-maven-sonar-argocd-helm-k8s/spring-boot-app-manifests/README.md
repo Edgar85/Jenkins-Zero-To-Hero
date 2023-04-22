@@ -1,4 +1,4 @@
-Install VirtualBox and Ubuntu on it
+﻿Install VirtualBox and Ubuntu on it
 
 We will use this virtual machine for the next Continuous Delivery part of this project.
 
